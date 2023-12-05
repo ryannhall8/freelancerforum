@@ -1,8 +1,12 @@
+const spanCount = document.querySelector('#spanCount');
+const spanAveragePrice = document.querySelector('#spanAveragePrice');
+const ul = document.querySelector('ul')
+
 const freelancers = [
-  {name: 'Dr. Carrot', price: '30', occupation: 'chef'},
-  {name: 'Dr. Sparkle', price: '40', occupation: 'teacher'},
-  {name: 'Dr. Pink', price: '60', occupation: 'artist'},
-  {name: 'Dr. Bizarre', price: '70', occupation: 'developer'}
+  {name: 'Dr. Carrot', price: 40, occupation: 'chef'},
+  {name: 'Dr. Sparkle', price: 50, occupation: 'teacher'},
+  {name: 'Dr. Pink', price: 30, occupation: 'artist'},
+  {name: 'Dr. Bizarre', price: 60, occupation: 'developer'}
 ];
 
 const occupations = [
@@ -19,5 +23,23 @@ const names = [
     "Dr. Bizarre"
 ]
 
+spanCount.innerHTML = freelancers.length;
 
-console.log(freelancers);
+let sum = 0;
+freelancers.forEach((freelancer)=> {
+    sum = sum + freelancer.price;
+});
+
+const average = sum / freelancers.length;
+
+spanAveragePrice.innerHTML = average;
+
+const html = freelancers.map((freelancer)=> {
+    return `
+    <li>
+      ${freelancer.name} is a ${freelancer.occupation} and cost $${freelancer.price} per hour
+    </li>
+    `;
+}).join('')
+
+ul.innerHTML = html;
